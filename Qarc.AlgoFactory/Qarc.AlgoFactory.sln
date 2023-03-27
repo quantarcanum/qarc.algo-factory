@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{5B6E5545-F761-47C9-A891-E1B112FD91F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D05C1FA9-7F76-4331-A52D-8B47246274D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qarc.AlgoFactory.Adapter.Api", "Qarc.AlgoFactory.Adapter.Api\Qarc.AlgoFactory.Adapter.Api.csproj", "{FF441FF0-A893-4FCB-AAF0-08BD3B373032}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF441FF0-A893-4FCB-AAF0-08BD3B373032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF441FF0-A893-4FCB-AAF0-08BD3B373032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF441FF0-A893-4FCB-AAF0-08BD3B373032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF441FF0-A893-4FCB-AAF0-08BD3B373032}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FF441FF0-A893-4FCB-AAF0-08BD3B373032} = {5B6E5545-F761-47C9-A891-E1B112FD91F4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8497EF84-50FF-4257-ADB4-60E5022106A6}
+	EndGlobalSection
+EndGlobal
