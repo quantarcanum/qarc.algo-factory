@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\qarc.algos\Qarc.Algos\Qarc.Algos.CCTRBomb\Qarc.Algos.CCTRBomb.csproj" />
+    <ProjectReference Include="..\..\..\qarc.algos\Qarc.Algos\Qarc.Algos.MarketMakerFootprint\Qarc.Algos.MarketMakerFootprint.csproj" />
+    <ProjectReference Include="..\..\..\qarc.algos\Qarc.Algos\Qarc.Algos.SharedKernel\Qarc.Algos.SharedKernel.csproj" />
+    <ProjectReference Include="..\Qarc.AlgoFactory.Core.Domain\Qarc.AlgoFactory.Core.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

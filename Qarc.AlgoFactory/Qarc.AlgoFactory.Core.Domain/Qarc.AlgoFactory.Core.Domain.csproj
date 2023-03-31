@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="SharedKernel\**" />
+    <EmbeddedResource Remove="SharedKernel\**" />
+    <None Remove="SharedKernel\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BombBar\" />
+    <Folder Include="MMFootprintBar\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\qarc.algos\Qarc.Algos\Qarc.Algos.SharedKernel\Qarc.Algos.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>
