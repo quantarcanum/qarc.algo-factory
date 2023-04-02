@@ -15,19 +15,26 @@ Read bars from storage and run algos against them. Insert results in storage.
 _In order to get the latest dockerfile (with all project references) just copy the ports from it, delete it, Add / Docker Support , then paste back the ports._
 
 #### 1. Build a local Docker Image
+
+>_Docker won't find the referenced DLLs from other locations above Dockerfile dir, So I have created in the API adapter a folder named dependencies so that docker can build the image!._
+
 >_Dockerfile contains some absolute paths to the projects so for this specific project I need to cd inside one dir above the API that holds the Dockerfile resides._
 ```
 cd C:\Coding\repos\quantarcanum\qarc.algo-factory\Qarc.AlgoFactory  
+```
+```
 docker build -f C:\Coding\repos\quantarcanum\qarc.algo-factory\Qarc.AlgoFactory\Qarc.AlgoFactory.Adapter.Api\Dockerfile -t qarc-algofactory .
-
+```
+```
 docker images     // check if it's created
 ```
 
 #### 2. Run a local Docker Container using the Image we've just built
-``` 
 //docker run -d -p external_port:internal_port image_name
-docker run -d -p 3230:80 -p 3231:443 qarc-datafeed
-
+``` 
+docker run -d -p 3232:80 -p 3233:443 qarc-algofactory
+```
+```
 // a few other commands for container manipulation
 docker ps -a                                         // list all containers (in order to get the container id)
 docker stop container_ID                             // stop container
@@ -36,7 +43,7 @@ docker exec -it container_ID bash                    // log into a contianer
 docker exit                                          // log out of a contianer
 docker rm -a container_ID                            // delete a container
 ```
-Check if it works by pinging http://localhost:3230/swagger/index.html
+Check if it works by pinging http://localhost:3232/swagger/index.html
 
 #### 3. Push the Docker Image to Dockerhub
 >_On docker hub we have a limitation that it only allows for one private repository. So in order to store multiple images we will use the same image name with different tags. Instead of using the tag to provide the version v1.0.0 we will use the tag as the "image name"._
@@ -49,22 +56,21 @@ The private repository on docker hub is called: pete3m/quantarcanum and we can p
 ``` 
 docker push pete3m/quantarcanum:tagname
 ``` 
-The local repository/image on my machine is called: qarc-datafeed
+The local repository/image on my machine is called: qarc-algofactory
 <br>I need to create another repository/image from it, to match the upstream repository name (specifying the image name as tag) 
 <br>Using the docker commit command I can create a new image based on an existing container: 
+//docker commit container_ID docker_username/upstream_repository_name:tag_optional   // (get container_id from step 2)
 ``` 
-//docker commit container_ID docker_username/upstream_repository_name:tag_optional
-docker commit 2f5cccaedeb7 pete3m/quantarcanum:qarc-datafeed                   // get container_id from step 2
+docker commit 2f5cccaedeb7 pete3m/quantarcanum:qarc-algofactory                   
 ``` 
 Now check if created (run "docker images"): you should have an image with: 
 - REPOSITORY pete3m/quantarcanum 
-- TAG qarc-datafeed
+- TAG qarc-algofactory
 
-Push the new repository by running: 
+Push the new repository by running:  
+//docker push docker_username/image_name:tag
 ``` 
-docker push docker_username/image_name:tag
-
-docker push pete3m/quantarcanum:qarc-datafeed
+docker push pete3m/quantarcanum:qarc-algofactory
 ```  
 Now you can check [docker hub](https://hub.docker.com/repository/docker/pete3m/quantarcanum/general) 
 
@@ -149,20 +155,20 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./Qarc.DataFeed
-          file: ./Qarc.DataFeed/Qarc.DataFeed.Adapter.Api/Dockerfile
+          context: ./Qarc.AlgoFactory
+          file: ./Qarc.AlgoFactory/Qarc.AlgoFactory.Adapter.Api/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/quantarcanum:qarc-datafeed
+          tags: ${{ secrets.DOCKER_USERNAME }}/quantarcanum:qarc-AlgoFactory
 
       - uses: tale/kubectl-action@v1
         with:
           base64-kube-config: ${{ secrets.KUBE_CONFIG_BASE64 }}
-      - run: kubectl delete -f ./Qarc.DataFeed/Kubernetes/deployment.yaml --ignore-not-found=true
-      - run: kubectl delete -f ./Qarc.DataFeed/Kubernetes/service.yaml --ignore-not-found=true
-      - run: kubectl delete -f ./Qarc.DataFeed/Kubernetes/ingressroute.yaml --ignore-not-found=true
-      - run: kubectl create -f ./Qarc.DataFeed/Kubernetes/deployment.yaml
-      - run: kubectl create -f ./Qarc.DataFeed/Kubernetes/service.yaml
-      - run: kubectl create -f ./Qarc.DataFeed/Kubernetes/ingressroute.yaml
+      - run: kubectl delete -f ./Qarc.AlgoFactory/Kubernetes/deployment.yaml --ignore-not-found=true
+      - run: kubectl delete -f ./Qarc.AlgoFactory/Kubernetes/service.yaml --ignore-not-found=true
+      - run: kubectl delete -f ./Qarc.AlgoFactory/Kubernetes/ingressroute.yaml --ignore-not-found=true
+      - run: kubectl create -f ./Qarc.AlgoFactory/Kubernetes/deployment.yaml
+      - run: kubectl create -f ./Qarc.AlgoFactory/Kubernetes/service.yaml
+      - run: kubectl create -f ./Qarc.AlgoFactory/Kubernetes/ingressroute.yaml
 ```
 **Trigger**: push/PR to main branch<br>
 
