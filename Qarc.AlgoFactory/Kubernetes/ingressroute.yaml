@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute                                               # type: ingress route
+metadata:
+  name: qarc-algofactory                                            # name
+  namespace: default
+spec:
+  entryPoints:
+    - web                                                        # this is the http port 8000 entry through traefik (9000 - traefik dashboard, 8000 - web(http), 8443 - websecure(https)
+  routes:                                                        # match can also do more complex stuff like this:
+    - match: Host(`qarc.tplinkdns.com`) && Path(`/api/CCTRBomb`)          # Host(`nginx.example.com`) || (Host(`nginx.example.org`) && Headers(`From`, `main@example.com`))
+      kind: Rule
+      services:
+        - name: qarc-algofactory-service
+          port: 80
+    - match: Host(`qarc.tplinkdns.com`) && Path(`/api/MMFootprint`)          # Host(`nginx.example.com`) || (Host(`nginx.example.org`) && Headers(`From`, `main@example.com`))
+      kind: Rule
+      services:
+        - name: qarc-algofactory-service
+          port: 80
