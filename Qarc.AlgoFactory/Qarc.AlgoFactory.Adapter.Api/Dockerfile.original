@@ -9,6 +9,7 @@ ENV ASPNETCORE_URLS=http://+:80
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["Qarc.AlgoFactory.Adapter.Api/Qarc.AlgoFactory.Adapter.Api.csproj", "Qarc.AlgoFactory.Adapter.Api/"]
+COPY ["Qarc.AlgoFactory.Adapter.Kafka/Qarc.AlgoFactory.Adapter.Kafka.csproj", "Qarc.AlgoFactory.Adapter.Kafka/"]
 COPY ["Qarc.AlgoFactory.Adapter.Mongo/Qarc.AlgoFactory.Adapter.Mongo.csproj", "Qarc.AlgoFactory.Adapter.Mongo/"]
 COPY ["Qarc.AlgoFactory.Core.Application/Qarc.AlgoFactory.Core.Application.csproj", "Qarc.AlgoFactory.Core.Application/"]
 COPY ["Qarc.AlgoFactory.Core.Domain/Qarc.AlgoFactory.Core.Domain.csproj", "Qarc.AlgoFactory.Core.Domain/"]
