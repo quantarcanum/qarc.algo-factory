@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:                                   # .METADATA SECTION describes the deployment
+  name: qarc-algofactory-deploy                # this is how it will name the deployment (so you can reference it inside kube)
+  labels: 
+    app: qarc-algofactory                      # this is how it will name the pods (so you can reference them inside kube)
+spec:                                       # SPEC SECTION defines the pods that the deploy will create
+  replicas: 1                                   # specifies how many pods to create
+  selector:                                     # a selector for the deployment to apply to "the pod that the deployment is describing in .metadata.labels.app". 
+    matchLabels:                                # SPEC.SELECTOR.MATCHLABELS SECTION tells what pods the deployment will apply to.
+      app: qarc-algofactory                        # so this value has to match the one in .metadata.labels.app (I think)
+  template:                                     # TEMPLATE This defines a pod template
+    metadata:
+      labels:
+        app: qarc-algofactory                       # name for the pod template used for creating pods (must match the .spec.selector.matchLabels.app)
+    spec:
+      imagePullSecrets:
+        - name: regcred                              # secret stored in kube containing creds to dokerhub private repo
+      containers:
+        - name: qarc-algofactory-container     
+          image: pete3m/quantarcanum:qarc-algofactory      # image name to be used for the container
+          imagePullPolicy: Always
+          ports:                                        # ports to expose
+            - name: gateway-http
+              protocol: TCP
+              containerPort: 80
+            - name: gateway-https
+              protocol: TCP
+              containerPort: 443
+
+# add rolling strategies, resources, health checks, persistent volumes from the guide below
+# https://codefresh.io/learn/software-deployment/kubernetes-deployment-yaml/
