@@ -12,9 +12,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\qarc.algos\Qarc.Algos\Qarc.Algos.MarketMakerFootprint\Qarc.Algos.MarketMakerFootprint.csproj" />
     <ProjectReference Include="..\Qarc.AlgoFactory.Core.Application\Qarc.AlgoFactory.Core.Application.csproj" />
     <ProjectReference Include="..\Qarc.AlgoFactory.Core.Domain\Qarc.AlgoFactory.Core.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Qarc.Algos.CCTRBomb">
+      <HintPath>..\Qarc.AlgoFactory.Adapter.Api\Dependencies\Qarc.Algos.CCTRBomb.dll</HintPath>
+    </Reference>
+    <Reference Include="Qarc.Algos.MarketMakerFootprint">
+      <HintPath>..\Qarc.AlgoFactory.Adapter.Api\Dependencies\Qarc.Algos.MarketMakerFootprint.dll</HintPath>
+    </Reference>
+    <Reference Include="Qarc.Algos.SharedKernel">
+      <HintPath>..\Qarc.AlgoFactory.Adapter.Api\Dependencies\Qarc.Algos.SharedKernel.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -21,4 +21,20 @@
     <ProjectReference Include="..\Qarc.AlgoFactory.Core.Application\Qarc.AlgoFactory.Core.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dependencies\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Qarc.Algos.CCTRBomb">
+      <HintPath>Dependencies\Qarc.Algos.CCTRBomb.dll</HintPath>
+    </Reference>
+    <Reference Include="Qarc.Algos.MarketMakerFootprint">
+      <HintPath>Dependencies\Qarc.Algos.MarketMakerFootprint.dll</HintPath>
+    </Reference>
+    <Reference Include="Qarc.Algos.SharedKernel">
+      <HintPath>Dependencies\Qarc.Algos.SharedKernel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

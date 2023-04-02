@@ -18,7 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\qarc.algos\Qarc.Algos\Qarc.Algos.SharedKernel\Qarc.Algos.SharedKernel.csproj" />
+    <Reference Include="Qarc.Algos.SharedKernel">
+      <HintPath>..\Qarc.AlgoFactory.Adapter.Api\Dependencies\Qarc.Algos.SharedKernel.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
